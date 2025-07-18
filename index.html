@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Free Superhit Training Call</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
+  <!-- Preload DP Image -->
+  <link rel="preload" as="image" href="bgp.webp" type="image/webp">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #fff;
@@ -19,33 +18,26 @@
       justify-content: center;
       padding: 20px;
     }
-
     .container {
       max-width: 420px;
       width: 100%;
-      border: 1px solid #e1e1e1;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
       overflow: hidden;
       text-align: center;
       background: #fff;
     }
-
     .top-banner {
       background: #00B7FF;
       color: #fff;
       padding: 10px;
       font-size: 14px;
     }
-
-    .top-banner b {
-      font-weight: bold;
-    }
-
+    .top-banner b { font-weight: bold; }
     .content {
       padding: 20px;
     }
-
     .logo {
       width: 80px;
       height: 80px;
@@ -53,33 +45,28 @@
       border-radius: 50%;
       object-fit: cover;
     }
-
     h1 {
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 6px;
     }
-
     .subscribers {
       font-size: 14px;
       color: #555;
       margin-bottom: 14px;
     }
-
     .description {
       font-size: 14px;
       line-height: 1.5;
       color: #222;
       margin-bottom: 20px;
     }
-
     .countdown {
       color: red;
       font-weight: bold;
       font-size: 16px;
       margin-bottom: 20px;
     }
-
     .btn {
       display: inline-block;
       background-color: #229ED9;
@@ -92,16 +79,34 @@
       margin-bottom: 16px;
     }
 
-    .footer {
-      font-size: 13px;
-      color: #444;
-      padding: 10px;
+    /* Popup Button Styles */
+    .popup-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #229ED9;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      animation: pulse 1.6s infinite;
+      display: none;
     }
 
-    .footer a {
-      color: #007bff;
-      text-decoration: none;
-      font-weight: 600;
+    @keyframes pulse {
+      0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(-50%) scale(1.05);
+        opacity: 0.95;
+      }
     }
   </style>
 </head>
@@ -111,11 +116,11 @@
       Don’t have <b>Telegram</b> yet? Try it now!
     </div>
     <div class="content">
-      <img src="https://i.imgur.com/QyQ2A9u.png" alt="Market icon" class="logo" />
+      <img src="bgp.webp" alt="Market DP" class="logo" loading="lazy" decoding="async" />
 
       <h1>Free superhit training call</h1>
       <div class="subscribers">
-        2,029 subscribers
+        <span id="subscriberCount">23,440</span> subscribers
       </div>
       <div class="description">
         India’s Top Traders’ Secret Strategies – Get Daily Stock Market Tips!<br/>
@@ -125,27 +130,81 @@
       <div class="countdown">
         Invitation closes in <span id="timer">5</span>s
       </div>
-      <a href="https://t.me/YourTelegramGroup" class="btn" id="telegramBtn">VIEW IN TELEGRAM</a>
-    </div>
-    <div class="footer">
-      Ads Managed By <a href="#">MarketIQ</a>
+      <a href="https://t.me/+VFpvvMWl3-43MWJl" class="btn" id="telegramBtn">VIEW IN TELEGRAM</a>
     </div>
   </div>
 
+  <!-- Floating Popup Button -->
+  <a href="https://t.me/+VFpvvMWl3-43MWJl" class="popup-btn" id="telegramPopup">
+    Join My Free Telegram Channel
+  </a>
+
+  <!-- Scripts -->
   <script>
-    let timeLeft = 5;
+    // Countdown logic
+    let countdownTime = 5;
     const timerEl = document.getElementById("timer");
-    const btn = document.getElementById("telegramBtn");
+    const redirectUrl = document.getElementById("telegramBtn").href;
 
     const countdown = setInterval(() => {
-      timeLeft--;
-      timerEl.textContent = timeLeft;
-      if (timeLeft <= 0) {
+      countdownTime--;
+      timerEl.textContent = countdownTime;
+      if (countdownTime <= 0) {
         clearInterval(countdown);
-        // Auto redirect to Telegram group
-        window.location.href = btn.href;
+        stopGrowth();
+        window.location.href = redirectUrl;
       }
     }, 1000);
+
+    // Subscriber count logic
+    let subCount = 23440;
+    const maxSubCount = 23500;
+    const subEl = document.getElementById("subscriberCount");
+
+    const subInterval = setInterval(() => {
+      if (subCount < maxSubCount) {
+        subCount++;
+        subEl.textContent = subCount.toLocaleString("en-IN");
+      } else {
+        clearInterval(subInterval);
+      }
+    }, 300); // Every 0.3s
+
+    // Stop growth on unload or click
+    function stopGrowth() {
+      clearInterval(subInterval);
+    }
+    window.addEventListener("beforeunload", stopGrowth);
+    document.getElementById("telegramBtn").addEventListener("click", stopGrowth);
+
+    // Show popup after 2 seconds
+    window.addEventListener("load", function () {
+      setTimeout(() => {
+        const popup = document.getElementById("telegramPopup");
+        if (popup) popup.style.display = "inline-block";
+      }, 2000);
+    });
   </script>
+
+  <!-- Meta Pixel Code -->
+  <script defer>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
+      };
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '25034150736175719');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=25034150736175719&ev=PageView&noscript=1"/>
+  </noscript>
 </body>
 </html>
