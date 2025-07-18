@@ -1,272 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="HandheldFriendly" content="True" />
-<meta name="MobileOptimized" content="320" />
-<title>Free Superhit Training Call</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Superhit Training Call</title>
 
-<!-- Preload logo for faster loading -->
-<link rel="preload" as="image" href="bgp.webp" type="image/webp" />
+  <!-- Preload DP Image -->
+  <link rel="preload" as="image" href="bgp.webp" type="image/webp">
 
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  html, body {
-    height: 100%;
-    font-family: system-ui, sans-serif;
-    background: #fff url('bgdg.webp') no-repeat center center / cover;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #000;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 420px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+      text-align: center;
+      background: #fff;
+    }
+    .top-banner {
+      background: #00B7FF;
+      color: #fff;
+      padding: 10px;
+      font-size: 14px;
+    }
+    .top-banner b { font-weight: bold; }
+    .content {
+      padding: 20px;
+    }
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .subscribers {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 14px;
+    }
+    .description {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #222;
+      margin-bottom: 20px;
+    }
+    .countdown {
+      color: red;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #229ED9;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
 
-  /* Fixed top banner */
-  .top-banner {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: #229ED9;
-    color: white;
-    font-weight: 700;
-    font-size: 14px;
-    text-align: center;
-    padding: 10px 0;
-    z-index: 1100;
-    user-select: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
+    /* Popup Button Styles */
+    .popup-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #229ED9;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      animation: pulse 1.6s infinite;
+      display: none;
+    }
 
-  /* Push main content down so it’s below the fixed banner */
-  .box-container {
-    margin-top: 40px; /* height of banner + small spacing */
-    position: relative;
-    width: 92%;
-    max-width: 420px;
-    padding: 3px;
-    border-radius: 12px;
-  }
-
-  .box-container::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 12px;
-    padding: 3px;
-    background: linear-gradient(90deg, #000, gold, #000);
-    background-size: 600% 600%;
-    animation: borderMove 3s linear infinite;
-    z-index: 1;
-    pointer-events: none;
-  }
-  @keyframes borderMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .box {
-    background: rgba(255 255 255 / 0.85);
-    backdrop-filter: blur(6px);
-    border-radius: 10px;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-  }
-
-  img.dp {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 16px;
-    display: block;
-  }
-
-  h1 {
-    color: #002060;
-    font-size: 26px;
-    margin-bottom: 16px;
-  }
-
-  .subscribers {
-    font-size: 15px;
-    color: #000;
-    margin-bottom: 18px;
-  }
-
-  h2 {
-    color: #002060;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  h3 {
-    color: #002060;
-    font-size: 15px;
-    margin-bottom: 20px;
-  }
-
-  .countdown {
-    background: #ff0055;
-    color: #fff;
-    font-size: 14px;
-    padding: 12px;
-    border-radius: 5px;
-    margin-bottom: 22px;
-  }
-
-  a.telegram-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    background: #229ED9;
-    color: white;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 12px 0;
-    border-radius: 40px;
-    text-decoration: none;
-    margin-bottom: 16px;
-    animation: pulse 1.4s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.95; }
-  }
-  a.telegram-btn svg {
-    width: 18px;
-    height: 18px;
-    fill: white;
-  }
-
-  .note {
-    font-size: 14px;
-    color: #111;
-    font-weight: 700;
-  }
-
-  /* Popup button */
-  .popup-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 100px; /* 100px below the box */
-    padding: 12px 24px;
-    background: #229ED9;
-    color: white;
-    font-size: 15px;
-    font-weight: 700;
-    border-radius: 40px;
-    cursor: pointer;
-    animation: pulse 1.4s infinite;
-    white-space: nowrap; /* prevent wrapping */
-    text-decoration: none;
-    user-select: none;
-  }
-</style>
+    @keyframes pulse {
+      0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(-50%) scale(1.05);
+        opacity: 0.95;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<!-- Fixed top banner -->
-<div class="top-banner">
-  Don't have Telegram? Get the app here →
-</div>
-
-<div class="box-container">
-  <div class="box">
-    <img
-      src="bgp.webp"
-      alt="Logo"
-      class="dp"
-      loading="lazy"
-      decoding="async"
-      fetchpriority="high"
-      width="80"
-      height="80"
-    />
-    <h1>Free Superhit Training Call</h1>
-    <div class="subscribers">
-      <span id="subscriberCount">23,440</span> Subscribers
+  <div class="container">
+    <div class="top-banner">
+      Don’t have <b>Telegram</b> yet? Try it now!
     </div>
-    <h2>Learn how to earn ₹50K per month safely</h2>
-    <h3>Day trading, options, technical analysis and more</h3>
-    <div class="countdown">
-      Invitation closes in <span id="timer">5</span> seconds
+    <div class="content">
+      <img src="bgp.webp" alt="Market DP" class="logo" loading="lazy" decoding="async" />
+
+      <h1>Free superhit training call</h1>
+      <div class="subscribers">
+        <span id="subscriberCount">23,440</span> subscribers
+      </div>
+      <div class="description">
+        India’s Top Traders’ Secret Strategies – Get Daily Stock Market Tips!<br/>
+        Stock Market में रोज़ाना 100% Free Tips – अभी Join करें!<br/>
+        90% Accuracy in Stock Market Calls – Join Our Exclusive Telegram!
+      </div>
+      <div class="countdown">
+        Invitation closes in <span id="timer">5</span>s
+      </div>
+      <a href="https://t.me/+VFpvvMWl3-43MWJl" class="btn" id="telegramBtn">VIEW IN TELEGRAM</a>
     </div>
-    <a href="https://t.me/+VFpvvMWl3-43MWJl" class="telegram-btn" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" aria-hidden="true">
-        <path d="M120,0C53.7,0,0,53.7,0,120s53.7,120,120,120s120-53.7,120-120S186.3,0,120,0z M177.3,78.2l-21.2,99.6
-            c-1.6,7.1-5.8,8.8-11.7,5.5l-32.4-23.9l-15.6,15.1c-1.7,1.7-3.2,3.2-6.5,3.2l2.3-32.9l59.9-54.1c2.6-2.3-0.6-3.7-4-1.4L83.3,134.1
-            l-31.7-9.9c-6.9-2.2-7.1-6.9,1.5-10.2l123.2-47.6C180.1,64.2,182.2,66.3,177.3,78.2z"/>
-      </svg>
-      View in Telegram
-    </a>
-    <div class="note">Superhit & Safe Trading Calls</div>
   </div>
-</div>
 
-<!-- Popup button initially hidden -->
-<a href="https://t.me/+VFpvvMWl3-43MWJl" class="popup-btn" style="display:none;" rel="noopener">
-  Join My Free Telegram Channel
-</a>
+  <!-- Floating Popup Button -->
+  <a href="https://t.me/+VFpvvMWl3-43MWJl" class="popup-btn" id="telegramPopup">
+    Join My Free Telegram Channel
+  </a>
 
-<!-- Scripts -->
-<script defer>
-  // Countdown timer
-  let timeLeft = 5;
-  const timer = document.getElementById("timer");
-  const countdown = setInterval(() => {
-    timeLeft--;
-    timer.textContent = timeLeft;
-    if (timeLeft <= 0) {
-      clearInterval(countdown);
-      window.location.href = "https://t.me/+VFpvvMWl3-43MWJl";
+  <!-- Scripts -->
+  <script>
+    // Countdown logic
+    let countdownTime = 5;
+    const timerEl = document.getElementById("timer");
+    const redirectUrl = document.getElementById("telegramBtn").href;
+
+    const countdown = setInterval(() => {
+      countdownTime--;
+      timerEl.textContent = countdownTime;
+      if (countdownTime <= 0) {
+        clearInterval(countdown);
+        stopGrowth();
+        window.location.href = redirectUrl;
+      }
+    }, 1000);
+
+    // Subscriber count logic
+    let subCount = 23440;
+    const maxSubCount = 23500;
+    const subEl = document.getElementById("subscriberCount");
+
+    const subInterval = setInterval(() => {
+      if (subCount < maxSubCount) {
+        subCount++;
+        subEl.textContent = subCount.toLocaleString("en-IN");
+      } else {
+        clearInterval(subInterval);
+      }
+    }, 300); // Every 0.3s
+
+    // Stop growth on unload or click
+    function stopGrowth() {
+      clearInterval(subInterval);
     }
-  }, 1000);
+    window.addEventListener("beforeunload", stopGrowth);
+    document.getElementById("telegramBtn").addEventListener("click", stopGrowth);
 
-  // Subscriber count animation from 23,440 to 23,500 every 0.3 sec
-  let count = 23440;
-  const end = 23500;
-  const counter = document.getElementById("subscriberCount");
-  const interval = 300; // ms
+    // Show popup after 2 seconds
+    window.addEventListener("load", function () {
+      setTimeout(() => {
+        const popup = document.getElementById("telegramPopup");
+        if (popup) popup.style.display = "inline-block";
+      }, 2000);
+    });
+  </script>
 
-  const counterInterval = setInterval(() => {
-    count++;
-    counter.textContent = count.toLocaleString("en-IN");
-    if (count >= end) clearInterval(counterInterval);
-  }, interval);
+  <!-- Meta Pixel Code -->
+  <script defer>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
+      };
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-  // Popup button show after 2 seconds
-  const popupBtn = document.querySelector(".popup-btn");
-  setTimeout(() => {
-    popupBtn.style.display = "inline-flex";
-  }, 2000);
-</script>
-
-<!-- Meta Pixel Code - loaded async to avoid blocking -->
-<script async>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '25034150736175719');
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=25034150736175719&ev=PageView&noscript=1" />
-</noscript>
-
+    fbq('init', '25034150736175719');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=25034150736175719&ev=PageView&noscript=1"/>
+  </noscript>
 </body>
 </html>
